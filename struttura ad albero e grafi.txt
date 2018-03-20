@@ -1,0 +1,32 @@
+ALBERI
+-ha nodi che contengono l'informazione di interesse 
+-il nodo più in alto di tutti è la radice o padre
+-i nodi che si trovano alla fine si chiamano figli 
+-l'albero binario ha due figli n-ario ha N figli
+-si possono esplorare gli alberi dall'alto verso il basso o viceversa 
+- IMPORTANTE: gli alberi binari di ricerca hanno solo 2 figli e i figli sinistri sono sempre più piccoli del padre mentre quelli a destra sono sempre più grandi 
+- non si possono avere figli in comune 
+-il sotto-albero sinistro deve essere sempre più grande della radice mentre il sotto-albero destro 
+-la foglia è un nodo senza figli
+-l'albero viene diviso in livelli 
+-i livelli dipendono dal tipo di albero es: nel minimax è il numero di mosse che posso calcolare per arrivare alla fine 
+
+
+GRAFI
+
+-una struttura dati basata su nodi
+-i nodi sono le informazioni della struttura dati
+-i collegamenti hanno funzioni diverse tra grafo e albero
+-al contrario dell'albero non si ha una sola radice ma nel grafo ogni nodo può essere un punto d'origine
+-i collegamenti o archi nel caso esempio di mappe sono i collegamenti da una città all'altra
+-Esempio la generazione di mappe procedurali 
+
+Tris
+-il primo step inizia sempre il giocatore
+-scelta la posizione assegna la sprite in quella posizione 
+-se si fa una mossa lecita l'AI inizia il minimax deve scegliere una cella ovvero la mossa migliore e riempirla 
+-quando finisce la partita mettere un text
+
+MINIMAX
+-funzione auristica se mi trovo in un nodo terminale o no 
+-minimax dovrà controllare se è il turno player o avversario 
