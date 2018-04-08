@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     void OnEnable()
     {
         EventManager.changeTurn += CheckTurn;
+        EventManager.checkEndGame += CheckEndGame;
     }
 
     // Use this for initialization
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
     void OnDisable()
     {
         EventManager.changeTurn -= CheckTurn;
+        EventManager.checkEndGame -= CheckEndGame;
     }
 
     void CheckTurn(int num)
@@ -57,8 +59,105 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void CheckVictory()
+    private void CheckEndGame(int num)
+    {
+        CheckHorizontal(num);
+        CheckVertical(num);
+        CheckDiagonal(num);
+        CheckInverseDiagonal(num);
+    }
+
+    private void CheckHorizontal(int num)
+    {
+        for (int i = 0; i < grid.raws.Length; i++)
+        {
+            int count = 0;
+
+            for (int j = 0; j < grid.raws[i].cells.Length; j++)
+            {
+                if (grid.raws[i].cells[j].entity == num)
+                {
+                    count++;
+                    if (count == 3)
+                    {
+                        Debug.Log("FineGiuoco!");
+                    }
+                }
+                else
+                {
+                    continue;
+                }
+            }
+        }
+    }
+
+    private void CheckVertical(int num)
     {
 
+        for (int k = 0; k < 3; k++)
+        {
+            int count = 0;
+            for (int i = 0; i < grid.raws.Length; i++)
+            {
+                for (int j = 0; j < 1; j++)
+                {
+                    if (grid.raws[i].cells[j + k].entity == num)
+                    {
+                        count++;
+                        if (count == 3)
+                        {
+                            Debug.Log("FineGiuoco!");
+                        }
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+
+        }
+    }
+
+    private void CheckDiagonal(int num)
+    {
+        int count = 0;
+
+        for (int i = 0; i < grid.raws.Length; i++)
+        {
+            if (grid.raws[i].cells[i].entity == num)
+            {
+                count++;
+                if (count == 3)
+                {
+                    Debug.Log("FineGiuoco!");
+                }
+            }
+            else
+            {
+                continue;
+            }
+        }
+    }
+
+    private void CheckInverseDiagonal(int num)
+    {
+        int count = 0;
+
+        for (int i = 0, j = grid.raws.Length - 1; i < grid.raws.Length && j >= 0; i++, j--)
+        {
+            if (grid.raws[i].cells[j].entity == num)
+            {
+                count++;
+                if (count == 3)
+                {
+                    Debug.Log("FineGiuoco!");
+                }
+            }
+            else
+            {
+                continue;
+            }
+        }
     }
 }

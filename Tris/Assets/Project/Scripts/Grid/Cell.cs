@@ -25,6 +25,7 @@ public class Cell : MonoBehaviour
             imag.sprite = playerSprite;
             isEmpty = false;
             entity = 0;  //player = 0
+            EventManager.OnCheckEndGame((int)GameManager.EntityTurn.player);
             EventManager.OnChangeTurn((int) GameManager.EntityTurn.enemy);
         }
         else
@@ -32,6 +33,7 @@ public class Cell : MonoBehaviour
             imag.sprite = aISprite;
             isEmpty = false;
             entity = 1; // enemy = 1
+            EventManager.OnCheckEndGame((int)GameManager.EntityTurn.enemy);
             EventManager.OnChangeTurn((int)GameManager.EntityTurn.player);
         }
     }
