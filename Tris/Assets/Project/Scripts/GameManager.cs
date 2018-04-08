@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
 	public enum EntityTurn
 	{
 		player = 0,
@@ -11,16 +13,52 @@ public class GameManager : MonoBehaviour
 	}
 
 	public EntityTurn entityTurn;
-	// Use this for initialization
-	void Start () 
+
+    public Grid grid;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    void OnEnable()
+    {
+        EventManager.changeTurn += CheckTurn;
+    }
+
+    // Use this for initialization
+    void Start () 
 	{
-		entityTurn = EntityTurn.player;
-		EventManager.OnChangeTurn (0);
+        EventManager.OnChangeTurn((int) EntityTurn.player);
 	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-		
-	}
+
+    private void Update()
+    {
+        if(entityTurn == EntityTurn.enemy)
+        {
+            grid.CheckEmptyCell().ChangeImage();
+        }
+    }
+
+    void OnDisable()
+    {
+        EventManager.changeTurn -= CheckTurn;
+    }
+
+    void CheckTurn(int num)
+    {
+        if(num == 0)
+        {
+            entityTurn = EntityTurn.player;
+        }
+        else
+        {
+            entityTurn = EntityTurn.enemy;
+        }
+    }
+
+    void CheckVictory()
+    {
+
+    }
 }
